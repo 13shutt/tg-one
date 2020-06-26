@@ -2,14 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const HttpError = require('./models/http-error');
+const usersRouter = require('./routes/users-routes');
 
 const app = express();
 
 // body-parser for incoming requests
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Main routes
-
+app.use('/api/users', usersRouter);
 
 // The 404 error for unexisting routes
 app.use((req, res, next) => {
