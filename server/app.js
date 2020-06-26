@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -10,6 +13,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Static for images
+app.use('/uploads/images', express.static(path.join('uploads', 'images')));
+
 // Main routes
 app.use('/api/users', usersRouter);
 
@@ -21,6 +27,13 @@ app.use((req, res, next) => {
 
 // The http errors handler
 app.use((error, req, res, next) => {
+    if (req.file) {
+        // eslint-disable-next-line node/prefer-promises/fs
+        fs.unlink(req.file.path, err => {
+            console.log(err);
+        });
+    }
+
     if (res.headerSent) {
         return next(error);
     }
