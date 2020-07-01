@@ -3,6 +3,7 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const HttpError = require('./models/http-error');
 const usersRouter = require('./routes/users-routes');
@@ -44,7 +45,15 @@ app.use((error, req, res, next) => {
     });
 });
 
-// Run server
-app.listen(5000, () => {
-    console.log('Server has been started . . .');
-});
+// Conncting to the db
+mongoose
+    .connect('mongodb+srv://noderest:noderest123@cluster0.josvz.azure.mongodb.net/tg-one?retryWrites=true&w=majority')
+    .then(() => {
+        // Run server
+        app.listen(5000, () => {
+            console.log('Server has been started . . .');
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    })

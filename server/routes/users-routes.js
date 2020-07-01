@@ -14,4 +14,8 @@ router.post('/signup',
 
 router.post('/login', usersController.login);
 
+router.patch('/edit',
+    fileUpload.single('image'),
+    usersController.updateProfile);
+
 module.exports = router;
