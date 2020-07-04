@@ -1,10 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
-import logo from '../../assets/tg-icon.png';
-
-export interface HeaderProps {}
-
-const StyledHeader = styled.header`
+header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,16 +21,4 @@ const StyledHeader = styled.header`
       margin-right: 10px;
     }
   }
-`;
-
-const Header: React.SFC<HeaderProps> = () => (
-  <StyledHeader>
-    <div>
-      <img src={logo} alt="logo" />
-      <h1>tg-one</h1>
-    </div>
-    <h2>*(definitely not a telegram)</h2>
-  </StyledHeader>
-);
-
-export default Header;
+}
