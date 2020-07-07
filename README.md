@@ -1,4 +1,4 @@
-# tg-one
+# tg-one - A simple web messanger similar to web Telegram
 
 [Trello](https://trello.com/b/H0pJESSs/telegram-clone)
 
