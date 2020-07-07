@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const POTR = process.env.PORT || 3000;
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -61,7 +63,10 @@ mongoose
     .connect('mongodb+srv://noderest:noderest123@cluster0.josvz.azure.mongodb.net/tg-one?retryWrites=true&w=majority')
     .then(() => {
         // Run server
-        app.listen(5000, () => {
+        app.listen(POTR, (e) => {
+            if(e){
+                console.log(e)
+            }
             console.log('Server has been started . . .');
         });
     })
