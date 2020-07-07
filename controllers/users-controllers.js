@@ -1,5 +1,6 @@
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
+const path = require('path');
 
 const getUserById = async (req, res, next) => {
     const userId = req.params.uid;
@@ -49,7 +50,7 @@ const signup = async (req, res, next) => {
         username,
         email,
         password,
-        image: req.file.path,
+        image: req.file ? req.file.path : path.join('uploads', 'images', 'default.png'),
         chats: []
     });
 
