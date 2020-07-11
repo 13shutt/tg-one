@@ -7,8 +7,8 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, minlength: 6 },
     image: { type: String },
-    chats: [{ type: mongoose.Types.ObjectId, ref: 'Chats' }],
-    contacts: [{ type: mongoose.Types.ObjectId, ref: 'Contacts'}]
+    chats: [{ type: mongoose.Types.ObjectId, ref: 'Chat' }],
+    contacts: [{ type: mongoose.Types.ObjectId, ref: 'Contact'}]
 });
 
 userSchema.plugin(uniqueValidator);
