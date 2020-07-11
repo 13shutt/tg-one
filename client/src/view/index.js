@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Route, Switch } from 'react-router-dom'
 import { Header } from 'components'
+import Login from './Login'
 
-import 'styles/fonts.scss'
-
-const Random = () => <div>Works!</div>
+import api from 'api/index'
 
 export default class Routes extends Component {
+  componentDidMount() {
+    console.log('cdm')
+  }
   render() {
     return (
       <>
@@ -18,8 +20,10 @@ export default class Routes extends Component {
 
         <Header />
 
+        {api()}
+
         <Switch>
-          <Route exact path="/" component={Random} />
+          <Route exact path="/" component={Login} />
         </Switch>
       </>
     )

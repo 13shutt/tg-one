@@ -10,6 +10,9 @@ header {
   font-size: 13px;
   font-family: 'Roboto Mono', monospace;
   font-weight: 300;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
   div {
     font-size: 22px;
     display: flex;

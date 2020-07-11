@@ -3,7 +3,7 @@ import { Provider } from 'mobx-react'
 import { createBrowserHistory } from 'history'
 import { RouterStore, syncHistoryWithStore } from 'mobx-react-router'
 import { Router } from 'react-router-dom'
-import 'styles/reset.scss'
+import 'styles/main.scss'
 
 import Routes from 'view'
 
