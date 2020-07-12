@@ -1,3 +1,6 @@
+$white: #fff;
+$gray: #9b9b9b;
+
 button {
   text-align: center;
   cursor: pointer;
@@ -5,11 +8,12 @@ button {
   margin: 0 0 0 100px;
   border: 0px;
   border-radius: 4px;
-  background-color: #d35400;
   border: none;
-  padding: 20px;
-  width: 200px;
+  width: 100px;
   transition: all 0.5s;
+  color: $gray;
+  background-color: inherit;
+  font-family: 'Roboto Mono', monospace;
   span {
     cursor: pointer;
     display: inline-block;
@@ -26,9 +30,11 @@ button {
   }
   &:hover span {
     padding-right: 25px;
+    color: $white;
   }
   &:hover span:after {
     opacity: 1;
+    color: $white;
     right: 0;
   }
 }
