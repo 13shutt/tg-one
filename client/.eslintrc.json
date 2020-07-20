@@ -23,6 +23,7 @@
     "import/named": "off",
     "lines-between-class-members": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "import/order": "off",
     "prettier/prettier": [
       "error",
       {

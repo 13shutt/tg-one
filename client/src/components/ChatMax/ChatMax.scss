@@ -1,0 +1,21 @@
+div.chatMax {
+  background-color: blue;
+  .chatMax-header {
+    display: flex;
+    flex-direction: row;
+    .chatMax-header-user {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: white;
+      height: 30px;
+      padding-left: 5px;
+    }
+  }
+  .chatMax-main {
+    height: 100vh;
+    background-image: url('../../assets/mock/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
