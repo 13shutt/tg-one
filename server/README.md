@@ -5,5 +5,6 @@ DB: MongoDB, Mongo Cloud, Mongoose
 Other: ESLint
 Auth: JWT
 
-Run server
-`npm start`
+### Running server
+ - npm run dev `For development`
+ - npm start `For production`
