@@ -1,7 +1,7 @@
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-const HttpError = require('../models/http-error');
+const HttpError = require('../helpers/http-error');
 const User = require('../models/user');
 
 /* Getting user by user id */
