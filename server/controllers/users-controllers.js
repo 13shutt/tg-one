@@ -1,3 +1,6 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
+
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
@@ -30,13 +33,13 @@ const getUserByUserName = async (req, res, next) => {
 };
 
 const signup = async (req, res, next) => {
-    const { username, email, password } = req.body;
+    const { firstName, lastName, username, email, password } = req.body;
 
     let existingUser;
     try {
         existingUser = await User.findOne({ email: email });
     } catch (err) {
-        const error = new HttpError('Sing up failed, please try again later.', 500);
+        const error = new HttpError(err.message, 500);
         return next(error);
     }
 
@@ -46,24 +49,29 @@ const signup = async (req, res, next) => {
     }
 
     const createdUser = new User({
+        firstName,
+        lastName,
         username,
         email,
         password,
         image: req.file.path,
-        chats: []
+        chats: [],
+        contacts: [],
+        createdAt: Date.now()
     });
 
     try {
         await createdUser.save();
     } catch (err) {
-        const error = new HttpError('Signig up failed, please try again later.', 500);
+        const error = new HttpError(err.message, 500);
         return next(error);
     }
 
-    res.status(201).json({ user: createdUser.toObject({ getters: true }) });
+    res.status(201).json({ data: { message: 'Success!' } });
 };
 
 const login = async (req, res, next) => {
+    // ToDo - add parameters validation in the future
     const { email, password } = req.body;
 
     let existingUser;
@@ -71,7 +79,7 @@ const login = async (req, res, next) => {
     try {
         existingUser = await User.findOne({ email: email });
     } catch (err) {
-        const error = new HttpError('Logging in failed, please try again later.', 500);
+        const error = new HttpError(err.message, 500);
         return next(error);
     }
 
@@ -80,7 +88,13 @@ const login = async (req, res, next) => {
         return next(error);
     }
 
-    res.json({ message: 'Logged in.' })
+    const token = jwt.sign(
+        { id: existingUser._id },
+        config.get('jwtSecret'),
+        // { expiresIn: '3h' }
+        );
+
+    res.status(200).json({ data: { token, message: 'Success!' } });
 };
 
 const updateProfile = async (req, res, next) => {
