@@ -3,6 +3,7 @@ const router = express.Router();
 
 const usersController = require('../controllers/users-controllers');
 const fileUpload = require('../middleware/file-upload');
+const authMiddleware = require('../middleware/auth-middleware');
 
 router.get('/', usersController.getUserByUserName);
 
@@ -15,6 +16,7 @@ router.post('/signup',
 router.post('/login', usersController.login);
 
 router.patch('/edit',
+    authMiddleware,
     fileUpload.single('image'),
     usersController.updateProfile);
 
