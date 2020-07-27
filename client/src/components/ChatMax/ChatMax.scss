@@ -1,5 +1,7 @@
+@import 'styles/variables.scss';
+
 div.chatMax {
-  background-color: blue;
+  background-color: $bg-primary-color;
   .chatMax-header {
     display: flex;
     flex-direction: row;
@@ -14,8 +16,6 @@ div.chatMax {
   }
   .chatMax-main {
     height: 100vh;
-    background-image: url('../../assets/mock/bg.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: $bg-primary-color;
   }
 }

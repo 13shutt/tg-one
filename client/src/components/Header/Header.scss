@@ -1,9 +1,11 @@
+@import 'styles/variables.scss';
+
 header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: #000063;
+  background: $bg-darker-color;
   color: white;
   height: 40px;
   font-size: 13px;

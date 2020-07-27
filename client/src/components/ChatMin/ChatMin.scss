@@ -1,5 +1,7 @@
+@import 'styles/variables.scss';
+
 div.chatMin {
-  background: #000063;
+  background: $bg-primary-color;
   display: flex;
   flex-direction: row;
   align-items: center;
