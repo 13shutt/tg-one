@@ -1,8 +1,10 @@
 $white: #fff;
 $gray: #9b9b9b;
 
+@import 'styles/variables.scss';
+
 .login-section {
-  background-color: #260371;
+  background-color: $bg-primary-color;
   font-family: 'Roboto Mono', monospace;
   display: flex;
   flex-direction: column;
