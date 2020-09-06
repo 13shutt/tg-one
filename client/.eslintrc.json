@@ -23,7 +23,9 @@
     "import/named": "off",
     "lines-between-class-members": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "no-underscore-dangle": "off",
     "import/order": "off",
+    "class-methods-use-this": "off",
     "prettier/prettier": [
       "error",
       {

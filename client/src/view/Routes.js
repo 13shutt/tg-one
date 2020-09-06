@@ -14,6 +14,7 @@ export default class Routes extends Component {
     console.log('cdm')
   }
   render() {
+    const { location } = this.props.routing
     return (
       <>
         <Helmet>
@@ -22,6 +23,7 @@ export default class Routes extends Component {
         </Helmet>
 
         {api()}
+        {console.log(location, 'state')}
 
         <Switch>
           <Route exact path="/login" component={Login} />

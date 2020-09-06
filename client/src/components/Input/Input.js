@@ -10,6 +10,8 @@ const Input = (props) => (
       name={props.name}
       id="name"
       required
+      value={props.value}
+      onChange={(e) => props.handleChange(e.target.value)}
     />
     <label for={props.name} className="form__label">
       {props.name}

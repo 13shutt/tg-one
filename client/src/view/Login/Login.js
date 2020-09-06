@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+import { observable } from 'mobx'
 import { Header, Input, Button } from 'components'
 import './Login.scss'
 
-export default class Login extends Component {
+@observer
+class Login extends Component {
+  @observable name = ''
+  @observable password = ''
+
+  handleInputName = (e) => {
+    this.name = e
+  }
+
+  handleInputPass = (e) => {
+    this.password = e
+  }
+
   render() {
     return (
       <>
@@ -17,8 +31,19 @@ export default class Login extends Component {
               </div>
             </div>
             <div className="login-fields">
-              <Input name="name" type="input" />
-              <Input name="password" type="password" />
+              <Input
+                name="name"
+                type="input"
+                value={this.name}
+                handleChange={this.handleInputName}
+              />
+              <Input
+                name="password"
+                type="password"
+                value={this.password}
+                handleChange={this.handleInputPass}
+              />
+              {console.log(`${this.name}, ${this.password}`)}
             </div>
           </div>
         </section>
@@ -26,3 +51,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default Login
