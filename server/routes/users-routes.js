@@ -7,6 +7,8 @@ const authMiddleware = require('../middleware/auth-middleware');
 
 router.get('/', usersController.getUserByUserName);
 
+router.get('/', usersController.getUsers);
+
 router.get('/:uid', usersController.getUserById);
 
 router.post('/signup',

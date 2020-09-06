@@ -19,9 +19,33 @@ const getUserById = async (req, res, next) => {
     res.json({ user: user.toObject({ getters: true }) });
 };
 
+/* Getting All users */
+const getUsers = async (req, res, next) => {
+
+    let users;
+
+    try {
+        users = await User.find({}, '-password');
+    } catch (err) {
+        const error = new HttpError(err.message, 500);
+        return next(error);
+    }
+
+    res.json({
+        data: {
+            users //user.toObject({ getters: true }) 
+        }
+    });
+};
+
 /* Getting user by user name */
 const getUserByUserName = async (req, res, next) => {
     const userName = req.query.u;
+
+    if (!userName){
+        next()
+    }
+
     let user;
 
     try {
@@ -110,7 +134,7 @@ const login = async (req, res, next) => {
         { id: existingUser._id },
         config.get('jwtSecret'),
         // { expiresIn: '3h' }
-        );
+    );
 
     res.status(200).json({ data: { token, message: 'Success!' } });
 };
@@ -168,6 +192,7 @@ const updateProfile = async (req, res, next) => {
 };
 
 module.exports = {
+    getUsers,
     getUserById,
     getUserByUserName,
     signup,
