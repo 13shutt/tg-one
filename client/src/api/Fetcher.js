@@ -1,9 +1,4 @@
 export default class Fetcher {
-  constructor(baseUrl = '', defaultOptions = {}, handlers = {}) {
-    this._baseUrl = baseUrl
-    this._defaultOptions = defaultOptions
-    this._handlers = handlers
-  }
   async get(path, options) {
     return this._fetch('GET', path, null, options)
   }
@@ -14,6 +9,7 @@ export default class Fetcher {
     const response = await fetch(path, {
       method: method,
       header: `{"Authorization": Bearer ${token}}`,
+      body: data,
     })
     return response
   }

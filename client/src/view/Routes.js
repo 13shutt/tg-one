@@ -5,16 +5,18 @@ import { inject, observer } from 'mobx-react'
 import Login from './Login'
 import Chats from './Chats'
 
-import api from 'api/index'
+import API from 'api/index'
 
-@inject('routing')
-@observer
+const api = new API()
+
+// @inject('routing')
+// @observer
 export default class Routes extends Component {
-  componentDidMount() {
-    console.log('cdm')
-  }
+  // componentDidMount() {
+  //   console.log('cdm')
+  // }
   render() {
-    const { location } = this.props.routing
+    // const { location } = this.props.routing
     return (
       <>
         <Helmet>
@@ -22,8 +24,8 @@ export default class Routes extends Component {
           <title>tg-one</title>
         </Helmet>
 
-        {api()}
-        {console.log(location, 'state')}
+        {console.log(api.getUsers())}
+        {/* {console.log(location, 'state')} */}
 
         <Switch>
           <Route exact path="/login" component={Login} />
