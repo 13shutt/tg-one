@@ -42,7 +42,7 @@ const getUserByUserName = async (req, res, next) => {
   const userName = req.query.u;
 
   if (!userName) {
-    next();
+   return next();
   }
 
   let user;
