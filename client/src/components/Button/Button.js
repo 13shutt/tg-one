@@ -1,9 +1,9 @@
 import React from 'react'
 import './Button.scss'
 
-const Button = (props) => (
-  <button type="submit">
-    <span>{props.name}</span>
+const Button = ({ name, ...restProps }) => (
+  <button type="submit" {...restProps}>
+    <span>{name}</span>
   </button>
 )
 

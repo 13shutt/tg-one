@@ -24,9 +24,6 @@ export default class Routes extends Component {
           <title>tg-one</title>
         </Helmet>
 
-        {console.log(api.getToken())}
-        {console.log(api.getUsers())}
-        {console.log(api.c())}
         {/* {console.log(location, 'state')} */}
 
         <Switch>

@@ -4,6 +4,10 @@ import { observable } from 'mobx'
 import { Header, Input, Button } from 'components'
 import './Login.scss'
 
+import API from 'api/index'
+
+const api = new API()
+
 @observer
 class Login extends Component {
   @observable name = ''
@@ -17,17 +21,20 @@ class Login extends Component {
     this.password = e
   }
 
+  handleFormSubmit = () => {
+    api.getToken(this.name, this.password)
+  }
+
   render() {
     return (
       <>
         <Header />
-
         <section className="login-section">
           <div className="login-wrapper">
             <div className="login-row">
               <div className="login-title">Login</div>
               <div className="login-buttons">
-                <Button name="Next" />
+                <Button name="Next" onClick={this.handleFormSubmit} />
               </div>
             </div>
             <div className="login-fields">
@@ -43,7 +50,6 @@ class Login extends Component {
                 value={this.password}
                 handleChange={this.handleInputPass}
               />
-              {console.log(`${this.name}, ${this.password}`)}
             </div>
           </div>
         </section>

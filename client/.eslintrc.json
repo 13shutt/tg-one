@@ -32,5 +32,9 @@
         "endOfLine": "auto"
       }
     ]
+  },
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowJs": true
   }
 }
