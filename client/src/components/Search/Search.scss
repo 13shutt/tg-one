@@ -1,0 +1,10 @@
+@import 'styles/variables.scss';
+
+input {
+  border-radius: 3px;
+  background-color: $bg-darker-color;
+  border: 1px solid $bg-active-color;
+  color: $plain-text-color;
+  padding-left: 7px;
+  margin-right: 35px;
+}

@@ -1,3 +1,8 @@
+import AuthStore from 'stores/auth'
+import chat from 'stores/chat'
+
+const auth = new AuthStore()
+
 export default class API {
   async getToken(email, password) {
     const myHeaders = new Headers()
@@ -14,8 +19,8 @@ export default class API {
     }
 
     await fetch(`${ROOT_URL}/users/login`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => response.json())
+      .then((result) => auth.ejectToken(result))
       .catch((error) => console.log('error', error))
   }
 
@@ -23,10 +28,15 @@ export default class API {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        //prettier-ignore
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }),
     }
 
     await fetch('http://localhost:5000/api/users/u1', requestOptions)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log('error', error))
   }
@@ -35,11 +45,16 @@ export default class API {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        //prettier-ignore
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }),
     }
 
     await fetch('http://localhost:5000/api/users/', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => response.json())
+      .then((result) => chat.setUsers(result))
       .catch((error) => console.log('error', error))
   }
 

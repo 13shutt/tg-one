@@ -8,7 +8,7 @@ const Input = (props) => (
       className="form__field"
       placeholder={props.name}
       name={props.name}
-      id="name"
+      id={props.name}
       required
       value={props.value}
       onChange={(e) => props.handleChange(e.target.value)}

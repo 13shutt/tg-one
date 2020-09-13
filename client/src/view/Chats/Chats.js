@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
 import './Chats.scss'
+import { observer } from 'mobx-react'
+import { observable } from 'mobx'
+import SearchBar from 'view/SearchBar'
 import one from 'assets/mock/1.jpg'
 import two from 'assets/mock/2.jpg'
 import three from 'assets/mock/3.jpg'
 import chotury from 'assets/mock/4.jpg'
 
-import { ChatMin, ChatMax } from 'components'
+import { ChatMin, ChatMax, Search } from 'components'
 
+@observer
 class Chats extends Component {
+  @observable searchInput = ''
+
+  handleSearchInput = (e) => {
+    this.searchInput = e.target.value
+  }
+
   render() {
     return (
       <section className="chats-section">
@@ -16,14 +26,22 @@ class Chats extends Component {
             <div className="chats-settings">
               <i className="fas fa-bars"></i>
             </div>
-            <input className="chats-search" type="text" placeholder="Search" />
+            <Search
+              placeholder="Search"
+              value={this.searchInput}
+              onChange={this.handleSearchInput}
+            />
           </div>
-          <div className="chats-list">
-            <ChatMin img={one} name="Rhino" active="true" />
-            <ChatMin img={two} name="Vulture" />
-            <ChatMin img={three} name="Electro" />
-            <ChatMin img={chotury} name="Green Goblin" />
-          </div>
+          {this.searchInput == '' ? (
+            <div className="chats-list">
+              <ChatMin img={one} name="Rhino" active="true" />
+              <ChatMin img={two} name="Vulture" />
+              <ChatMin img={three} name="Electro" />
+              <ChatMin img={chotury} name="Green Goblin" />
+            </div>
+          ) : (
+            <SearchBar />
+          )}
         </div>
         <div className="chat">
           <ChatMax name="Rhino" />
