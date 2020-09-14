@@ -21,19 +21,19 @@ const getUserById = async (req, res, next) => {
 
 /* Getting All users */
 const getUsers = async (req, res, next) => {
-  let users;
+  // let users;
 
-  try {
-    users = await User.find({}, "-password");
-  } catch (err) {
-    const error = new HttpError(err.message, 500);
-    return next(error);
-  }
+  // try {
+  //   users = await User.find({}, "-password");
+  // } catch (err) {
+  //   const error = new HttpError(err.message, 500);
+  //   return next(error);
+  // }
 
   res.json(
     //{ data: { users, } }
     { data: { users: res.paginatedResult } }
-    );
+  );
 };
 
 /* Getting user by user name */
@@ -41,7 +41,7 @@ const getUserByUserName = async (req, res, next) => {
   const userName = req.query.u;
 
   if (!userName) {
-   return next();
+    return next();
   }
 
   let user;
@@ -145,7 +145,7 @@ const login = async (req, res, next) => {
     // { expiresIn: '3h' }
   );
 
-  res.status(200).json({ data: { token, message: "Success!" } });
+  res.status(200).json({ data: { user: `/api/users/${existingUser._id}`, token, message: "Success!" } });
 };
 
 /* User edit profile */
