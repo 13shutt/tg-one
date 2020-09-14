@@ -3,6 +3,7 @@ import './Chats.scss'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
 import SearchBar from 'view/SearchBar'
+import UserModal from 'view/UserModal'
 import one from 'assets/mock/1.jpg'
 import two from 'assets/mock/2.jpg'
 import three from 'assets/mock/3.jpg'
@@ -13,9 +14,18 @@ import { ChatMin, ChatMax, Search } from 'components'
 @observer
 class Chats extends Component {
   @observable searchInput = ''
+  @observable modal = false
 
   handleSearchInput = (e) => {
     this.searchInput = e.target.value
+  }
+
+  openModal = () => {
+    this.modal = true
+  }
+
+  closeModal = () => {
+    this.modal = false
   }
 
   render() {
@@ -23,7 +33,7 @@ class Chats extends Component {
       <section className="chats-section">
         <div className="chats">
           <div className="chats-header">
-            <div className="chats-settings">
+            <div className="chats-settings" onClick={this.openModal}>
               <i className="fas fa-bars"></i>
             </div>
             <Search
@@ -46,6 +56,7 @@ class Chats extends Component {
         <div className="chat">
           <ChatMax name="Rhino" />
         </div>
+        {this.modal && <UserModal closeModal={this.closeModal} />}
       </section>
     )
   }

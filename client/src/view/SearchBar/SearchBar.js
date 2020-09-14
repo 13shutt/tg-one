@@ -13,8 +13,11 @@ class SearchBar extends Component {
     return (
       <>
         {this.props.chat.users.map((i) => (
-          <ChatMin key={i} name={i.username} />
-          //console.log(i)
+          <ChatMin
+            key={i}
+            name={i.username}
+            img={`http://localhost:5000/uploads/images/default.png`}
+          />
         ))}
       </>
     )
