@@ -30,11 +30,10 @@ const getUsers = async (req, res, next) => {
     return next(error);
   }
 
-  res.json({
-    data: {
-      users, //user.toObject({ getters: true })
-    },
-  });
+  res.json(
+    //{ data: { users, } }
+    { data: { users: res.paginatedResult } }
+    );
 };
 
 /* Getting user by user name */
