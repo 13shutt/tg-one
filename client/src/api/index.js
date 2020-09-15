@@ -54,6 +54,7 @@ export default class API {
 
     await fetch('http://localhost:5000/api/users/', requestOptions)
       .then((response) => response.json())
+      //.then((result) => console.log(result))
       .then((result) => chat.setUsers(result))
       .catch((error) => console.log('error', error))
   }
