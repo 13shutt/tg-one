@@ -11,17 +11,17 @@ const saveLocalStorage = (key) => (value) => {
 class AuthStore {
   @observable token = localStorage.getItem('token')
 
-  @observable user = localStorage.getItem('user')
+  @observable userID = localStorage.getItem('userID')
 
   constructor() {
     reaction(() => this.token, saveLocalStorage('token'))
-    reaction(() => this.user, saveLocalStorage('user'))
+    reaction(() => this.userID, saveLocalStorage('userID'))
   }
 
   ejectToken(res) {
     if (res.data.message == 'Success!') {
-      this.user = res.data.user
       this.token = res.data.token
+      this.userID = res.data.user.slice(11, res.data.user.length)
     } else {
       console.log('wrong credentials')
     }
