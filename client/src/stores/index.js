@@ -4,6 +4,7 @@ import chat from './chat'
 
 const stores = {
   routing,
+  auth,
   chat,
 }
 

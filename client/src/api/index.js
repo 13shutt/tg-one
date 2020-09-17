@@ -1,7 +1,7 @@
-import AuthStore from 'stores/auth'
+import auth from 'stores/auth'
 import chat from 'stores/chat'
 
-const auth = new AuthStore()
+//const auth = new AuthStore()
 
 export default class API {
   async getToken(email, password) {
@@ -35,7 +35,7 @@ export default class API {
       }),
     }
 
-    await fetch('http://localhost:5000/api/users/u1', requestOptions)
+    await fetch(`http://localhost:5000/api/users/${localStorage.getItem('userID')}`, requestOptions)
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log('error', error))

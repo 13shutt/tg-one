@@ -13,6 +13,8 @@ class AuthStore {
 
   @observable userID = localStorage.getItem('userID')
 
+  @observable authenticated = false
+
   constructor() {
     reaction(() => this.token, saveLocalStorage('token'))
     reaction(() => this.userID, saveLocalStorage('userID'))
@@ -22,10 +24,11 @@ class AuthStore {
     if (res.data.message == 'Success!') {
       this.token = res.data.token
       this.userID = res.data.user.slice(11, res.data.user.length)
+      this.authenticated = true
     } else {
       console.log('wrong credentials')
     }
   }
 }
 
-export default AuthStore
+export default new AuthStore()
