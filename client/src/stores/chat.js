@@ -14,7 +14,7 @@ class ChatStore {
 
   @action
   setUsers = (res) => {
-    this.users = res.data.users
+    this.users = res.data.users.result
   }
   // getUsers = () => console.log('getUser')
 }
