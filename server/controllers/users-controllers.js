@@ -197,11 +197,19 @@ const updateProfile = async (req, res, next) => {
     return next(error);
   }
 
-  user.firstName = !!firstName ? firstName : user.firstName;
-  user.lastName = !!lastName ? lastName : user.lastName;
-  user.lastName = !!username ? username : user.username;
-  user.password = !!password ? password : user.password;
-  //user.image = !!req.file.path ? req.file.path : user.image;
+  user.firstName = firstName ? firstName : user.firstName;
+  user.lastName = lastName ? lastName : user.lastName;
+  user.username = username ? username : user.username;
+  user.password = password ? password : user.password;
+
+  try {
+    if(req.file){
+      user.image = req.file.path ? req.file.path : user.image;
+    }
+  } catch (err) {
+    const error = new HttpError("Something went wrong", 500);
+    return next(error)
+  }
 
   try {
     await user.save();
