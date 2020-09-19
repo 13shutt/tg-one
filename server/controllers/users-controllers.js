@@ -11,11 +11,16 @@ const getUserById = async (req, res, next) => {
   try {
     user = await User.findOne({ _id: userId }, "-password");
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
-  res.json({ user: user.toObject({ getters: true }) });
+  res.json({
+    data: {
+      user,
+      message: "Succsess!"
+    }
+  });
 };
 
 /* Getting All users */
@@ -26,14 +31,16 @@ const getUsers = async (req, res, next) => {
   // try {
   //   users = await User.find({}, "-password");
   // } catch (err) {
-  //   const error = new HttpError(err.message, 500);
+  //   const error = new HttpError("Something went wrong", 500);
   //   return next(error);
   // }
 
-  res.json(
-    //{ data: { users, } }
-    { data: { users: res.paginatedResult } }
-  );
+  res.json({
+    data: {
+      users: res.paginatedResult,
+      message: "Success!"
+    }
+  });
 };
 
 /* Getting user by user name */
@@ -49,11 +56,16 @@ const getUserByUserName = async (req, res, next) => {
   try {
     user = await User.findOne({ username: userName }, "-password");
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
-  res.json({ user: user.toObject({ getters: true }) });
+  res.json({
+    data: {
+      user,
+      message: "Succsess!"
+    }
+  });
 };
 
 /* User registration */
@@ -64,7 +76,7 @@ const signup = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ email });
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
@@ -81,7 +93,7 @@ const signup = async (req, res, next) => {
   try {
     existingUserName = await User.findOne({ username });
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
@@ -108,7 +120,7 @@ const signup = async (req, res, next) => {
   try {
     await createdUser.save();
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
@@ -120,14 +132,12 @@ const login = async (req, res, next) => {
   // ToDo - add parameters validation in the future
   const { email, password } = req.body;
 
-  console.log(req.body);
-
   let existingUser;
 
   try {
     existingUser = await User.findOne({ email: email });
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
@@ -151,7 +161,6 @@ const login = async (req, res, next) => {
 /* User edit profile */
 const updateProfile = async (req, res, next) => {
   // ToDo - add parameters validation in the future
-  //const { username, password, id } = req.body;
   const { firstName, lastName, username, password } = req.body;
   const userId = req.user.id;
 
@@ -168,7 +177,7 @@ const updateProfile = async (req, res, next) => {
       return next(error);
     }
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
@@ -177,7 +186,7 @@ const updateProfile = async (req, res, next) => {
   try {
     existingUserName = await User.findOne({ username });
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
@@ -198,7 +207,7 @@ const updateProfile = async (req, res, next) => {
   try {
     await user.save();
   } catch (err) {
-    const error = new HttpError(err.message, 500);
+    const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 

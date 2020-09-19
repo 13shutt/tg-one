@@ -20,7 +20,10 @@ const httpErrorsHandler = (error, req, res, next) => {
 
     res.status(error.code || 500);
     res.json({
-        data: { message: error.message || 'An unknown error occurred!' }
+        data: { 
+            message: error.message || 'An unknown error occurred!',
+            stack: process.env.NODE_ENV === 'production' ? 'Nothing interesting here 😎' : error.stack
+        }
     });
 }
 
