@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const HttpError = require('../helpers/http-error');
 
 module.exports = (req, res, next) => {
@@ -16,7 +15,9 @@ module.exports = (req, res, next) => {
 
         if (!token) { return next(new HttpError('Forbidden.', 403)); }
 
-        const decoded = jwt.verify(token, config.get('jwtSecret'));
+        const decoded = jwt.verify(token, 
+            process.env.JWT_SECRET
+            );
         req.user = decoded;
         next();
 

@@ -2,9 +2,9 @@ const http = require('http');
 const mongoose = require('mongoose');
 const App = require('./app');
 
-const config = require('config');
+require('dotenv').config();
 
-const PORT = process.env.PORT || config.get('port');
+const PORT = process.env.PORT || 5000;
 const HOST = '127.0.0.1';
 
 const httpServer = http.createServer(App());
@@ -13,7 +13,9 @@ httpServer.on('listening', () => console.log(`Server has been started on ${HOST}
 
 // Conncting to the mongodb
 mongoose
-    .connect(config.get('mongoUri'), { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(
+        process.env.MONGO_URI, 
+        { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         // Listen server
         httpServer.listen(PORT, HOST);

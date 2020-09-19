@@ -1,4 +1,3 @@
-const config = require("config");
 const jwt = require("jsonwebtoken");
 
 const HttpError = require("../helpers/http-error");
@@ -20,6 +19,7 @@ const getUserById = async (req, res, next) => {
 };
 
 /* Getting All users */
+// eslint-disable-next-line no-unused-vars
 const getUsers = async (req, res, next) => {
   // let users;
 
@@ -141,7 +141,7 @@ const login = async (req, res, next) => {
 
   const token = jwt.sign(
     { id: existingUser._id },
-    config.get("jwtSecret")
+    process.env.MONGO_URI
     // { expiresIn: '3h' }
   );
 
