@@ -11,7 +11,8 @@ const userSchema = new Schema({
     image: { type: String },
     chats: [{ type: mongoose.Types.ObjectId, ref: 'Chat' }],
     contacts: [{ type: mongoose.Types.ObjectId, ref: 'Contact' }],
-    createdAt: { type: Number, required: true, },
+}, {
+    timestamps: true,
 });
 
 userSchema.plugin(uniqueValidator);

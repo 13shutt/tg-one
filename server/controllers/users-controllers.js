@@ -114,7 +114,6 @@ const signup = async (req, res, next) => {
     image: req.file.path,
     chats: [],
     contacts: [],
-    createdAt: Date.now(),
   });
 
   try {
@@ -151,7 +150,7 @@ const login = async (req, res, next) => {
 
   const token = jwt.sign(
     { id: existingUser._id },
-    process.env.MONGO_URI
+    process.env.JWT_SECRET
     // { expiresIn: '3h' }
   );
 
@@ -202,18 +201,25 @@ const updateProfile = async (req, res, next) => {
   user.lastName = !!lastName ? lastName : user.lastName;
   user.lastName = !!username ? username : user.username;
   user.password = !!password ? password : user.password;
-  user.image = !!req.file.path ? req.file.path : user.image;
+  //user.image = !!req.file.path ? req.file.path : user.image;
 
   try {
     await user.save();
   } catch (err) {
+    console.log(err.message)
     const error = new HttpError("Something went wrong", 500);
     return next(error);
   }
 
   res
     .status(200)
-    .json({ data: { user: `/api/users/${user._id}`, message: "Success!" } });
+    .json({
+      data:
+      { 
+        user: `/api/users/${user._id}`,
+        message: "Success!"
+      }
+    });
 };
 
 module.exports = {
