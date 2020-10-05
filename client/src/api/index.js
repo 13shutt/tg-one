@@ -37,7 +37,7 @@ export default class API {
 
     await fetch(`http://localhost:5000/api/users/${localStorage.getItem('userID')}`, requestOptions)
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result) => auth.setUserData(result))
       .catch((error) => console.log('error', error))
   }
 

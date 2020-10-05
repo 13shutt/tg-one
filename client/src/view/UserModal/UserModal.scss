@@ -13,8 +13,27 @@ section.modal-section {
   align-items: center;
   justify-content: center;
   div.modal {
+    padding: 20px 30px;
     height: 500px;
     width: 300px;
-    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-primary-color;
+    color: $headers-color;
+    border-radius: 5px;
+    .modal-title {
+      font-size: 20px;
+    }
+    .modal-img {
+    }
+    .modal-username {
+    }
+    .modal-id {
+      color: $plain-text-color;
+      font-size: 10px;
+    }
+    div {
+      padding-bottom: 5px;
+    }
   }
 }

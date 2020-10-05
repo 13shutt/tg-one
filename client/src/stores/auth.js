@@ -15,6 +15,8 @@ class AuthStore {
 
   @observable authenticated = false
 
+  @observable user = []
+
   constructor() {
     reaction(() => this.token, saveLocalStorage('token'))
     reaction(() => this.userID, saveLocalStorage('userID'))
@@ -28,6 +30,10 @@ class AuthStore {
     } else {
       console.log('wrong credentials')
     }
+  }
+  setUserData(res) {
+    this.user = res
+    console.log(this.user)
   }
 }
 

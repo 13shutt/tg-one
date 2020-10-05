@@ -11,6 +11,10 @@ import chotury from 'assets/mock/4.jpg'
 
 import { ChatMin, ChatMax, Search } from 'components'
 
+import API from 'api/index'
+
+const api = new API()
+
 @observer
 class Chats extends Component {
   @observable searchInput = ''
@@ -26,6 +30,10 @@ class Chats extends Component {
 
   closeModal = () => {
     this.modal = false
+  }
+
+  componentDidMount() {
+    api.getUserByID()
   }
 
   render() {
