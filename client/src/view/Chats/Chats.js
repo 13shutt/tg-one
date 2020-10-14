@@ -19,6 +19,7 @@ const api = new API()
 class Chats extends Component {
   @observable searchInput = ''
   @observable modal = false
+  @observable companion = true
 
   handleSearchInput = (e) => {
     this.searchInput = e.target.value
@@ -61,9 +62,15 @@ class Chats extends Component {
             <SearchBar />
           )}
         </div>
-        <div className="chat">
-          <ChatMax name="Rhino" />
-        </div>
+        {this.companion != null ? (
+          <div className="chat">
+            <ChatMax name="Rhino" />
+          </div>
+        ) : (
+          <div className="chat-empty">
+            <h1>Please select a chat to start messaging</h1>
+          </div>
+        )}
         {this.modal && <UserModal closeModal={this.closeModal} />}
       </section>
     )

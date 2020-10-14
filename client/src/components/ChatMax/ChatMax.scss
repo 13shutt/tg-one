@@ -5,13 +5,30 @@ div.chatMax {
   .chatMax-header {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     .chatMax-header-user {
       display: flex;
-      flex-direction: row;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       color: white;
       height: 30px;
       padding-left: 5px;
+      span {
+        color: $icons-color;
+        font-size: 12px;
+      }
+    }
+    .chatMax-header-info {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 40px;
+      div {
+        color: $icons-color;
+      }
     }
   }
   .chatMax-main {
