@@ -2,12 +2,14 @@
 
 div.chatMax {
   background-color: $bg-primary-color;
+  height: 100vh;
   .chatMax-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    height: 5vh;
     .chatMax-header-user {
       display: flex;
       flex-direction: column;
@@ -15,6 +17,9 @@ div.chatMax {
       color: white;
       height: 30px;
       padding-left: 5px;
+      div {
+        cursor: pointer;
+      }
       span {
         color: $icons-color;
         font-size: 12px;
@@ -28,11 +33,41 @@ div.chatMax {
       width: 40px;
       div {
         color: $icons-color;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          color: $icons-color-hover;
+          transition: 0.3s;
+        }
       }
     }
   }
   .chatMax-main {
-    height: 100vh;
     background-color: $bg-primary-color;
+    height: 86vh;
+  }
+  .chatMax-footer {
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    input {
+      height: 30px;
+      border: none;
+      background-color: inherit;
+      width: 100%;
+    }
+    div {
+      padding-right: 15px;
+      color: $icons-color;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        color: $icons-color-hover;
+        transition: 0.3s;
+      }
+    }
   }
 }

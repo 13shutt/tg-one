@@ -6,14 +6,16 @@ div.chatMin {
   flex-direction: row;
   align-items: center;
   color: white;
+  transition: 0.2s;
   img {
     width: 50px;
     height: 50px;
     border-radius: 25px;
     margin: 7px;
   }
-}
-
-div.true {
-  background-color: $bg-active-color;
+  &:hover {
+    background-color: $bg-active-color;
+    cursor: pointer;
+    transition: 0.2s;
+  }
 }
